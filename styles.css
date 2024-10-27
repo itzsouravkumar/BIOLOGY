@@ -5,7 +5,6 @@ body {
     background-color: #f5f5f5;
 }
 
-
 header {
     background-color: #292e29;
     color: white;
@@ -16,7 +15,7 @@ header {
     font-style: normal;
     font-size: 2rem;
     word-spacing: 0.5rem;
-    height: 15rem;
+    height: auto;
     width: auto;
 }
 
@@ -44,7 +43,6 @@ input[type="text"] {
     box-sizing: border-box; /* Ensures padding and border don't change height */
 }
 
-
 button {
     padding: 0.5rem 1rem;
     background-color: white;
@@ -56,7 +54,6 @@ button {
 button:hover {
     background-color: #ddd;
 }
-
 
 #searchBtn:hover {
     box-shadow: 0 0 10px rgba(50, 72, 95, 0.6), 0 0 20px rgba(71, 101, 133, 0.4), 0 0 30px rgba(81, 116, 153, 0.2);
@@ -85,4 +82,57 @@ footer {
     position: relative;
     bottom: 0;
     width: auto;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.5rem;
+        padding: 10px 0;
+    }
+
+    input[type="text"] {
+        width: 80%;
+        margin-bottom: 1rem;
+    }
+
+    #searchBtn {
+        width: 80%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    #geneInfo {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 1.2rem;
+        padding: 10px 0;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    #searchBtn {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    main {
+        padding: 5px;
+    }
+
+    #geneInfo {
+        padding: 0.5rem;
+    }
 }
