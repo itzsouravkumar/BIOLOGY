@@ -17,6 +17,7 @@ header {
     font-size: 2rem;
     word-spacing: 0.5rem;
     height: 15rem;
+    width: auto;
 }
 
 #searchBtn {
@@ -83,5 +84,5 @@ footer {
     color: white;
     position: relative;
     bottom: 0;
-    width: 100%;
+    width: auto;
 }
