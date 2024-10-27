@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+
+header {
+    background-color: #292e29;
+    color: white;
+    padding: 5px 0;
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+    word-spacing: 0.5rem;
+    height: 15rem;
+}
+
+#searchBtn {
+    padding: 12px 20px; /* Adjust padding to match input */
+    font-size: 16px;
+    color: #fff;
+    background-color: #07aa3d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    height: 42px; /* Explicit height to match input */
+}
+
+input[type="text"] {
+    padding: 0.5rem;
+    width: 300px;
+    margin-right: 0.5rem;
+    margin-bottom: 2rem;
+    border: 2px solid #292e29; /* Adjusted border style */
+    border-radius: 5px;
+    font-size: 16px;
+    height: 42px; /* Same height as button */
+    box-sizing: border-box; /* Ensures padding and border don't change height */
+}
+
+
+button {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    color: #227525;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+
+#searchBtn:hover {
+    box-shadow: 0 0 10px rgba(50, 72, 95, 0.6), 0 0 20px rgba(71, 101, 133, 0.4), 0 0 30px rgba(81, 116, 153, 0.2);
+}
+
+main {
+    padding: 20px;
+}
+
+#geneInfo {
+    margin-top: 20px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 20px 30px 20px 30px rgba(0.1, 0.1, 0.1, 0.1);
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #292e29;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
