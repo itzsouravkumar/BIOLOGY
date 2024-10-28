@@ -127,7 +127,7 @@ footer {
     main {
         padding: 10px;
     }
-    #geneInfo {
+    #geneInfo, #geneApplications {
         width: 90%;
         padding: 15px;
     }
