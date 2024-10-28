@@ -21,7 +21,7 @@ main {
 }
 
 #geneInfo {
-    width: 80%;
+    width: 90%;
     max-width: 900px;
     padding: 20px;
     margin-top: 20px;
@@ -40,21 +40,23 @@ header {
 
 h1 {
     font-family: 'Bebas Neue', cursive;
-    font-size: 5rem;
+    font-size: 4rem;
     margin: 0;
     color: #fff;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
+/* Input styling */
 #geneSearch {
     padding: 10px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     border-radius: 5px;
     border: 1px solid #ddd;
     margin-right: 10px;
-    margin-top: 50px;
-    width: 40%;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
 }
 
 #searchBtn {
@@ -74,11 +76,61 @@ h1 {
 }
 
 #searchBtn:active {
-    box-shadow: 0 0 3.75px rgba(10, 155, 212, 0.8), 0 0 9.375px rgba(10, 155, 212, 0.8), 0 0 14.0625px rgba(10, 155, 212, 0.8);
+    transform: scale(0.98);
 }
 
 footer {
     text-align: center;
     padding: 20px;
     color: #fff;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablet view adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+    #geneSearch {
+        width: 90%;
+        max-width: 350px;
+    }
+    #searchBtn {
+        width: 90%;
+        max-width: 350px;
+        margin-top: 10px;
+    }
+    #geneInfo {
+        padding: 15px;
+    }
+}
+
+/* Mobile view adjustments */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    /* Full width and stacked layout for search box and button on mobile */
+    #geneSearch, #searchBtn {
+        width: 90%;
+        max-width: none;
+        margin: 5px 0;
+    }
+    
+    #searchBtn {
+        margin-top: 0;
+    }
+    
+    main {
+        padding: 10px;
+    }
+    #geneInfo {
+        width: 100%;
+        padding: 15px;
+    }
+    footer {
+        font-size: 0.9rem;
+    }
 }
