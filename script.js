@@ -52,3 +52,10 @@ function displayGeneInfo(geneDetails) {
         ${geneDetails.summary ? `<p><strong>Summary:</strong> ${geneDetails.summary}</p>` : ''}
     `;
 }
+
+// JavaScript code for future features
+document.getElementById('searchBtn').addEventListener('click', () => {
+    const query = document.getElementById('geneSearch').value;
+    document.getElementById('geneInfo').innerHTML = `<p>Searching for: ${query}</p>`;
+});
+
