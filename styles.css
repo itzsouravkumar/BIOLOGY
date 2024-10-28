@@ -14,13 +14,14 @@ body {
 
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding: 20px;
     min-height: 100vh;
 }
 
-#geneInfo {
+#geneInfo, #geneApplications {
     width: 90%;
     max-width: 900px;
     padding: 20px;
@@ -133,4 +134,22 @@ footer {
     footer {
         font-size: 0.9rem;
     }
+}
+
+.button {
+    display: inline-block; /* Ensures the buttons are displayed inline */
+    padding: 10px 20px; /* Add padding for better spacing */
+    margin: 5px; /* Add some margin between buttons */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #4793e4cb; /* Bootstrap primary color */
+    color: white; /* Text color */
+    text-align: center; /* Center text */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
 }
