@@ -5,24 +5,20 @@ document.getElementById('searchBtn').addEventListener('click', function () {
 
 async function fetchGeneData(geneName) {
     try {
-        // Fetch gene ID from NCBI `esearch` using the gene name
         const searchResponse = await fetch(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=${geneName}&retmode=json`);
         const searchData = await searchResponse.json();
         const geneIds = searchData.esearchresult.idlist;
 
-        // Check if there are results
         if (geneIds.length === 0) {
             document.getElementById('geneInfo').innerText = 'No genes found for this search term.';
             return;
         }
 
-        // Fetch gene details from NCBI `esummary` using the first gene ID
-        const geneId = geneIds[0]; // Take the first ID as an example
+        const geneId = geneIds[0];
         const summaryResponse = await fetch(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gene&id=${geneId}&retmode=json`);
         const summaryData = await summaryResponse.json();
         const geneDetails = summaryData.result[geneId];
 
-        // Display gene information
         displayGeneInfo(geneDetails);
     } catch (error) {
         console.error('Error fetching gene data:', error);
@@ -42,13 +38,11 @@ function displayGeneInfo(geneDetails) {
         ${geneDetails.organism?.commonname ? `<p><strong>Organism Common Name:</strong> ${geneDetails.organism.commonname}</p>` : ''}
         ${geneDetails.organism?.scientificname ? `<p><strong>Organism Scientific Name:</strong> ${geneDetails.organism.scientificname}</p>` : ''}
 
-        <!-- Location History with property checks -->
         ${geneDetails.locationhist && geneDetails.locationhist.length ?
             `<p><strong>Location History:</strong> ${geneDetails.locationhist.map(loc =>
                 `${loc.annotationrelease || 'N/A'}, ${loc.chraccver || 'N/A'}, ${loc.chrlocation || 'N/A'}`).join('; ')}</p>`
             : ''}
 
-        <!-- Genomic Info with property checks -->
         ${geneDetails.genomicinfo && geneDetails.genomicinfo.length ?
             `<p><strong>Genomic Info:</strong> ${geneDetails.genomicinfo.map(info =>
                 `${info.chrstart || 'N/A'} - ${info.chrstop || 'N/A'}`).join(', ')}</p>`

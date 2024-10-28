@@ -20,7 +20,7 @@ header {
 }
 
 #searchBtn {
-    padding: 12px 20px; /* Adjust padding to match input */
+    padding: 12px 20px;
     font-size: 16px;
     color: #fff;
     background-color: #07aa3d;
@@ -28,7 +28,7 @@ header {
     border-radius: 5px;
     cursor: pointer;
     transition: box-shadow 0.3s ease;
-    height: 42px; /* Explicit height to match input */
+    height: 42px;
 }
 
 input[type="text"] {
@@ -36,11 +36,11 @@ input[type="text"] {
     width: 300px;
     margin-right: 0.5rem;
     margin-bottom: 2rem;
-    border: 2px solid #292e29; /* Adjusted border style */
+    border: 2px solid #292e29;
     border-radius: 5px;
     font-size: 16px;
-    height: 42px; /* Same height as button */
-    box-sizing: border-box; /* Ensures padding and border don't change height */
+    height: 42px;
+    box-sizing: border-box;
 }
 
 button {
@@ -84,7 +84,6 @@ footer {
     width: auto;
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     header {
         font-size: 1.5rem;
