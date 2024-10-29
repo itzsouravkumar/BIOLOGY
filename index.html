@@ -4,32 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Human Genome Database Explorer</title>
+    <title>Genome Database Explorer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
-        <h1>Human Genome Database Explorer</h1>
-        <input type="text" id="geneSearch" placeholder="Enter gene name or ID...">
+        <h1>Genome Database Explorer</h1>
+        <input type="text" id="geneSearch" placeholder="Enter gene name / Id / Ensembl Id / Accession code .....">
         <button id="searchBtn">Search</button>
+        <p>Please use Ensembl ID for Applications and Accession Codes for More details.</p>
     </header>
 
     <main>
         <div id="geneInfo">
-            <p>Welcome to the Human Genome Database Explorer. Enter a gene name or ID to explore its details.</p>
+            <h2>Basic Information</h2>
+            <p>Welcome to the Genome Database Explorer. Enter a gene name or ID to explore its details.</p>
         </div>
         <div id="geneApplications">
             <h2>Applications</h2>
             <p>Applications of the selected gene will appear here.</p>
         </div>
+        <div id="moreDetails">
+            <h2>More Details</h2>
+            <p>Accession details will be shown here.</p>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 Human Genome Explorer</p>
+        <p>&copy; 2024 Genome Explorer</p>
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://www.ncbi.nlm.nih.gov/Structure/icn3d/es/icn3d-3.10.1.min.js"></script>
+
 </body>
 
 </html>

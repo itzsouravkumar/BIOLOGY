@@ -1,15 +1,19 @@
-document.getElementById('searchBtn').addEventListener('click', function () {
-    const geneName = document.getElementById('geneSearch').value;
+function fetchDatas(geneName) {
     fetchGeneData(geneName);
     fetchGeneApplications(geneName);
+    fetchMoreGeneDetails(geneName);
+}
+
+document.getElementById('searchBtn').addEventListener('click', function () {
+    const geneName = document.getElementById('geneSearch').value;
+    fetchDatas(geneName);
 });
 
 document.getElementById('geneSearch').addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
         event.preventDefault();
         const geneName = document.getElementById('geneSearch').value;
-        fetchGeneData(geneName);
-        fetchGeneApplications(geneName);
+        fetchDatas(geneName);
     }
 });
 
@@ -49,6 +53,7 @@ async function fetchGeneData(geneName) {
 async function selectGene(geneId) {
     const summaryResponse = await fetch(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gene&id=${geneId}&retmode=json`);
     const summaryData = await summaryResponse.json();
+    console.log(summaryData);
     const geneDetails = summaryData.result[geneId];
     displayGeneInfo(geneDetails);
 }
@@ -115,4 +120,69 @@ function displayGeneApplications(geneData) {
             <p><strong>${disease.disease.name}</strong> - Application in therapeutic area: ${disease.disease.therapeuticAreas.map(area => area.name).join(', ')}</p>
         `;
     });
+}
+
+
+async function fetchMoreGeneDetails(accession) {
+    try {
+        const moreDetailsResponse = await fetch(`https://api.ncbi.nlm.nih.gov/datasets/v2/genome/accession/${accession}/dataset_report`);
+        const moreDetailsData = await moreDetailsResponse.json();
+        
+        displayMoreDetails(moreDetailsData);
+    } catch (error) {
+        console.error('Error fetching more details:', error);
+        document.getElementById('moreDetails').innerText = 'An error occurred while fetching more details.';
+    }
+}
+
+function displayMoreDetails(data) {
+    const moreDetailsDiv = document.getElementById('moreDetails');
+    
+    if (!data || !data.reports || data.reports.length === 0) {
+        moreDetailsDiv.innerHTML = '<p>No additional details available for this accession.</p>';
+        return;
+    }
+    
+    const report = data.reports[0];
+    const { accession, organism, assembly_info, assembly_stats, organelle_info, annotation_info } = report;
+
+    moreDetailsDiv.innerHTML = `
+        <h2>More Details</h2>
+        <p><strong>Accession:</strong> ${accession || 'N/A'}</p>
+        
+        <h3>Organism Information</h3>
+        <p><strong>Scientific Name:</strong> ${organism?.organism_name || 'N/A'}</p>
+        <p><strong>Common Name:</strong> ${organism?.common_name || 'N/A'}</p>
+        <p><strong>Tax ID:</strong> ${organism?.tax_id || 'N/A'}</p>
+
+        <h3>Assembly Information</h3>
+        <p><strong>Assembly Name:</strong> ${assembly_info?.assembly_name || 'N/A'}</p>
+        <p><strong>Type:</strong> ${assembly_info?.assembly_type || 'N/A'}</p>
+        <p><strong>Status:</strong> ${assembly_info?.assembly_status || 'N/A'}</p>
+        <p><strong>Description:</strong> ${assembly_info?.description || 'N/A'}</p>
+        <p><strong>Release Date:</strong> ${assembly_info?.release_date || 'N/A'}</p>
+        <p><strong>Synonym:</strong> ${assembly_info?.synonym || 'N/A'}</p>
+        
+        <h3>Assembly Statistics</h3>
+        <p><strong>Total Chromosomes:</strong> ${assembly_stats?.total_number_of_chromosomes || 'N/A'}</p>
+        <p><strong>Total Sequence Length:</strong> ${assembly_stats?.total_sequence_length || 'N/A'}</p>
+        <p><strong>GC Content (%):</strong> ${assembly_stats?.gc_percent || 'N/A'}</p>
+
+        <h3>Organelle Information</h3>
+        ${organelle_info && organelle_info.length > 0 ? 
+            organelle_info.map(organelle => `
+                <p><strong>Organelle:</strong> ${organelle.description}</p>
+                <p><strong>Sequence Length:</strong> ${organelle.total_seq_length}</p>
+                <p><strong>Submitter:</strong> ${organelle.submitter}</p>
+            `).join('') : '<p>No organelle information available.</p>'}
+        
+        <h3>Annotation Information</h3>
+        <p><strong>Provider:</strong> ${annotation_info?.provider || 'N/A'}</p>
+        <p><strong>Release Date:</strong> ${annotation_info?.release_date || 'N/A'}</p>
+        <p><strong>Total Gene Count:</strong> ${annotation_info?.stats?.gene_counts?.total || 'N/A'}</p>
+        <p><strong>Protein Coding Genes:</strong> ${annotation_info?.stats?.gene_counts?.protein_coding || 'N/A'}</p>
+        <p><strong>Non-coding Genes:</strong> ${annotation_info?.stats?.gene_counts?.non_coding || 'N/A'}</p>
+        <p><strong>Pseudogenes:</strong> ${annotation_info?.stats?.gene_counts?.pseudogene || 'N/A'}</p>
+        <p><strong>Annotation Report:</strong> <a href="${annotation_info?.report_url}" target="_blank">Link</a></p>
+    `;
 }
